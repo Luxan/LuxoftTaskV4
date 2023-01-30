@@ -7,7 +7,7 @@ import pl.luxan.luxofttaskv4.model.ClientData;
 import java.util.Optional;
 
 @Repository
-public interface ClientDataRepository extends JpaRepository<ClientData, Long> {
+public interface ClientDataRepository extends JpaRepository<ClientData, String> {
 
     Optional<ClientData> findByPrimaryKey(String primaryKey);
 

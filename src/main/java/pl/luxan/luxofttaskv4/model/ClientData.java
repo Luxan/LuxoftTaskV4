@@ -2,7 +2,6 @@ package pl.luxan.luxofttaskv4.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.Timestamp;
 
@@ -16,7 +15,6 @@ import java.sql.Timestamp;
 public class ClientData {
 
     @Id
-    @NotNull
     @Column(name = "PRIMARY_KEY", unique = true)
     private String primaryKey;
 
