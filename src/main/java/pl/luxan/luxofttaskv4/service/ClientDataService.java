@@ -19,7 +19,7 @@ public class ClientDataService {
     private final ClientDataRepository clientDataRepository;
 
     @Autowired
-    ClientDataService(ClientDataRepository clientDataRepository) {
+    public ClientDataService(ClientDataRepository clientDataRepository) {
         this.clientDataRepository = clientDataRepository;
     }
 

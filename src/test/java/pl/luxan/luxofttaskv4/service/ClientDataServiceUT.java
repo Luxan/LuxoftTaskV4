@@ -1,12 +1,9 @@
 package pl.luxan.luxofttaskv4.service;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
+import org.springframework.boot.test.context.SpringBootTest;
 import pl.luxan.luxofttaskv4.model.ClientData;
 import pl.luxan.luxofttaskv4.repository.ClientDataRepository;
 import pl.luxan.luxofttaskv4.service.dto.ClientDataDTO;
@@ -19,17 +16,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class ClientDataServiceUT {
 
     public static final String TEST_PRIMARY_KEY = "TEST_PRIMARY_KEY";
     public static final String INVALID_PRIMARY_KEY = "INVALID_PRIMARY_KEY";
 
     @Mock
-    ClientDataRepository clientDataRepositoryMock;
+    private ClientDataRepository clientDataRepositoryMock;
 
-    ClientDataService testSubject;
-    @Before
+    private ClientDataService testSubject;
+
+    @BeforeEach
     public void setUp() {
         testSubject = new ClientDataService(clientDataRepositoryMock);
     }

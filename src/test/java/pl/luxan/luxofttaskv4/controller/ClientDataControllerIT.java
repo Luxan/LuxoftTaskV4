@@ -2,19 +2,16 @@ package pl.luxan.luxofttaskv4.controller;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import pl.luxan.luxofttaskv4.LuxoftTaskV4Application;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -24,8 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = {LuxoftTaskV4Application.class})
+@SpringBootTest
 public class ClientDataControllerIT {
 
     @Value("${api.path}")
@@ -49,12 +45,12 @@ public class ClientDataControllerIT {
     private static final String CSV_CONTENT_EMPTY_PRIMARY_KEY = """
             ,Pintel,Pirates of the Caribbean5,2005:03:03T14:44Z""";
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
     }
 
-    @After
+    @AfterEach
     public void cleanup() {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
@@ -62,7 +58,6 @@ public class ClientDataControllerIT {
         em.getTransaction().commit();
         em.close();
     }
-
 
     @Test
     public void itShouldNotFailIfCsvFileIsEmpty() throws Exception {
